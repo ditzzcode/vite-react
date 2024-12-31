@@ -10,6 +10,7 @@ import { FethingDataWithMemo } from './memo/FetchingMemo'
 import { ReducerCount } from './useReduce/ReduceCount'
 import { FetchingReducer } from './useReduce/ReduceFetching'
 import { Themed } from './useContext.jsx/Themed'
+import { FetchDone , FetchData } from './useContext.jsx/FetchWithReduce'
 
 function App() {
 
@@ -20,6 +21,9 @@ function App() {
     <ReducerCount/>
     <FetchingReducer/>
     <Themed/>
+    <FetchDone>
+      <FetchData/>
+    </FetchDone>
     </>
   )
 }
