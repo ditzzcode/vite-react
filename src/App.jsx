@@ -11,8 +11,24 @@ import { ReducerCount } from './useReduce/ReduceCount'
 import { FetchingReducer } from './useReduce/ReduceFetching'
 import { Themed } from './useContext.jsx/Themed'
 import { FetchDone , FetchData } from './useContext.jsx/FetchWithReduce'
+import { useFetcing } from './createCustomHook/useFetch'
 
 function App() {
+
+  function FetchDataApi() {
+    const {data , loading , error} = useFetcing("https://reqres.in/api/users")
+
+    if(loading) return <h1>loading...</h1>
+    if(error) return <h1>error 404</h1>
+
+    return (
+      <ul>
+        {data.data.map((item) => (
+          <li key={item.id}>{item.email}</li>
+        ))}
+      </ul>
+    )
+  }
 
   return (
     <>
@@ -24,6 +40,7 @@ function App() {
     <FetchDone>
       <FetchData/>
     </FetchDone>
+    <FetchDataApi/>
     </>
   )
 }
