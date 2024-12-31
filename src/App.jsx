@@ -12,6 +12,7 @@ import { FetchingReducer } from './useReduce/ReduceFetching'
 import { Themed } from './useContext.jsx/Themed'
 import { FetchDone , FetchData } from './useContext.jsx/FetchWithReduce'
 import { useFetcing } from './createCustomHook/useFetch'
+import useInput from './createCustomHook/useInput'
 
 function App() {
 
@@ -30,6 +31,29 @@ function App() {
     )
   }
 
+  const InputName = () => {
+    const name = useInput("");
+    const email = useInput("");
+
+    const HandlerSumbit = (e) => {
+      e.preventDefault();
+      console.log(name.value)
+      console.log(email.value);
+    }
+
+    return (
+      <form onSubmit={HandlerSumbit}>
+        <div>
+          <input type='text'  placeholder='username' value={name.value} onChange={name.onChange}/>
+        </div>
+        <div>
+          <input type='email'  placeholder='email' required='off' value={email.value} onChange={email.onChange}/>
+        </div>
+        <button type='submit'>Sumbit</button>
+      </form>
+    )
+  }
+
   return (
     <>
     <CalculationMemo/>
@@ -38,9 +62,10 @@ function App() {
     <FetchingReducer/>
     <Themed/>
     <FetchDone>
-      <FetchData/>
+    <FetchData/>
     </FetchDone>
     <FetchDataApi/>
+    <InputName/>
     </>
   )
 }
